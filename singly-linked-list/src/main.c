@@ -24,6 +24,14 @@ static struct Node * node_push(struct Node *node_prev, uint8_t *data)
 	return node;
 }
 
+static struct Node * node_pop(struct Node *node_head, uint16_t index) 
+{
+	struct Node *node = node_head->fd; 
+	for(uint16_t i = 0; (index != i && i < 0xffff); ++i){
+		node = node->fd;
+	}
+	return node;
+}
 
 static uint8_t node_info(struct Node * node_head)
 {
@@ -48,6 +56,8 @@ int main()
 		struct Node *node = node_push(node_prev, data);
 		node_prev = node;
 	}
+	
 	node_info(node_head);
+	printf("%p", node_pop(node_head, 0x2));
 	return 0;
 }
