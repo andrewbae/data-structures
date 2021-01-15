@@ -24,6 +24,7 @@ static struct Node * node_push(struct Node *node_prev, uint8_t *data)
 	return node;
 }
 
+
 static uint8_t node_info(struct Node * node_head)
 {
 	struct Node *node = node_head->fd;
@@ -34,6 +35,7 @@ static uint8_t node_info(struct Node * node_head)
 		printf("data: %s\n\n", node->data);
 		node = node->fd;
 	}
+	return EXIT_SUCCESS;
 }
 
 int main()
