@@ -3,7 +3,7 @@
 ## Build
 ```
 $ cmake -B build .
-$ ./run #or cmake --build build
+$ ./run.sh #or cmake --build build
 ```
 
 ## Result
