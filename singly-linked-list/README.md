@@ -7,7 +7,7 @@
 
 ## Build
 ```
-$ cmake -B build .
+$ cmake -H. -Bbuild
 $ ./run.sh #or cmake --build build
 ```
 
