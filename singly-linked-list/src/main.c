@@ -35,11 +35,14 @@ static struct Node * node_pop(struct Node *node_head, uint16_t index)
 
 static uint8_t node_delete(struct Node *node_head, uint16_t index) 
 {
-	struct Node *node = node_head->fd; 
-	for(uint16_t i = 0; (index != i && i < 0xffff); ++i){
-		node = node->fd;
+	struct Node *prev_node = node_head->fd; 
+	struct Node *next_node;
+	for(uint16_t i = 0; ((index - 1) != i && i < 0xffff); ++i){
+		prev_node = prev_node->fd;
 	}
-	memset(node, (uint8_t)0x00, sizeof(struct Node));
+	next_node = (prev_node->fd)->fd;	
+	prev_node->fd = next_node;
+	memset(prev_node->fd, (uint8_t)0x00, sizeof(struct Node));
 	return EXIT_SUCCESS;
 }
 
@@ -66,7 +69,6 @@ int main()
 		struct Node *node = node_push(node_prev, data);
 		node_prev = node;
 	}
-	
 	node_info(node_head);
 	printf("%p", node_pop(node_head, 0x2));
 	node_delete(node_head, 0x3);
