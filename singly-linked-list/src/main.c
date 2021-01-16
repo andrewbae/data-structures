@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <strings.h>
-#include <unistd.h>
+#include <string.h>
+#include <stdint.h>
 
 struct Node {
 	struct Node *fd;
@@ -43,6 +43,7 @@ static uint8_t node_delete(struct Node *node_head, uint16_t index)
 	next_node = (prev_node->fd)->fd;	
 	prev_node->fd = next_node;
 	memset(prev_node->fd, (uint8_t)0x00, sizeof(struct Node));
+
 	return EXIT_SUCCESS;
 }
 
